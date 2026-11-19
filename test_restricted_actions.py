@@ -16,6 +16,8 @@ tests = {
     "python read /etc/passwd": "python -c \"print(open('/etc/passwd').read())\"",
     "python write /var/test.txt": "python -c \"open('/var/test.txt','w').write('x')\"",
     "python write /app/ok.txt (should work)": "python -c \"open('/app/ok.txt','w').write('x')\"",
+    "python exec /bin/bash": "python -c \"import subprocess; subprocess.run(['/bin/bash','-c','echo hi'])\"",
+    "python exec /usr/bin/id": "python -c \"import subprocess; subprocess.run(['/usr/bin/id'])\"",
 }
 
 for name, cmd in tests.items():
