@@ -8,13 +8,22 @@ profile my-apparmor-profile flags=(attach_disconnected,mediate_deleted) {
     network inet6 stream,
     network inet6 dgram,
 
-    file,
+    # File access
+    /** rwlk,
+    /usr/local/bin/** rix,
+    /usr/local/lib/** mr,
+    /usr/lib/** mr,
+    /lib/** mr,
+
     deny /etc/passwd r,
     deny /etc/shadow r,
     deny /var/** w,
 
+    # Block running shells and system binaries
     deny /bin/** x,
     deny /usr/bin/** x,
+    deny /usr/sbin/** x,
+    deny /sbin/** x,
 
     capability,
     deny capability sys_admin,
